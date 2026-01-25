@@ -63,9 +63,18 @@ The template uses `A4` as its page size; you can specify a different #link("http
 
 The title block (without a page break) and title page can be added by calling the `#title-block()` and `#title-page()` functions, respectively.
 
+The date format in the title is customizable via the `date-format` argument. The format string uses the same syntax as the `datetime.display()` function.
+```typst
+#title-block(
+  date-format: "[day] [month repr:short] [year]",
+)
+```
+
 == Margins
 
-The template uses two sets of margins for ordinary text and for headings. The ordinary text has a larger binding margin to allow for hole punching, whereas the headings have equal margins on both sides to maintain symmetry. You can customize the even/odd margins by setting the `double-sided` argument in the `documentclass` function, or disable double-sided layout by setting the `print` argument to `false`.
+The template uses two sets of margins for ordinary text and for headings, thanks to the `wideblock` function provided by the `marginalia` package. The ordinary text has a larger binding margin to allow for hole punching, whereas the headings have equal margins on both sides to maintain symmetry. You can customize the even/odd margins by setting the `double-sided` argument in the `documentclass` function, or disable double-sided layout by setting the `print` argument to `false`.
+
+Notes or figures can be placed in the binding margin. However, it requires the user to manually import the `marginalia` package, and be aware that the experience is unstable and elements might not appear correctly.
 
 = Summary
 

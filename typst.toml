@@ -4,10 +4,10 @@ version = "0.1.0"
 entrypoint = "src/lib.typ"
 authors = ["Brian Li"]
 license = "MIT"
-description = "A template designed for use for documentation in high-technology companies. A typst rework of the LaTex `hitec` package."
+description = "A template designed for documentation in high-technology companies. Also a Typst adaptation of the LaTeX `hitec` package."
 repository = "https://github.com/ShabbyGayBar/hitec"
 keywords = ["technology", "report"]
-categories = ["report"]
+categories = ["book", "report"]
 exclude = ["documentation"]
 
 [template]

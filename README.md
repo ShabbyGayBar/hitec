@@ -29,13 +29,6 @@ typst init @preview/hitec:0.1.0 my-report
 
 This will create a new Typst project with the HITEC template set up under the directory `my-report`.
 
-## Roadmap
-
-- [ ] Apply separate margins for text and other elements (e.g. headings, page headers, etc.).
-- [ ] Add double-sided print support.
-- [ ] Improve documentation with more examples and usage guidelines.
-- [ ] Enhance compatibility with US letter and other paper sizes.
-
 ## License
 
 This template is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
