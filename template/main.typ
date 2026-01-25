@@ -20,6 +20,8 @@
   company: [The Company, Ltd],
   confidential: [#sym.bar.h Unlimited Distribution #sym.bar.h],
   date: datetime.today(),
+  double-sided: true, // Enable double-sided printing
+  print: true, // Add margins to binding side for printing
 )
 
 #show: doc

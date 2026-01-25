@@ -11,15 +11,15 @@
   /// -> content | string
   title: [],
   /// Name(s) of Author(s)
-  /// 
+  ///
   /// -> string | array
   author: "",
   /// Name of Company/Institution
-  /// 
+  ///
   /// -> content | string
   company: [],
   /// Confidentiality Level
-  /// 
+  ///
   /// -> content | string
   confidential: [],
   /// Date of submission
@@ -66,6 +66,7 @@
         company: company,
         confidential: confidential,
         date: date,
+        print: print,
       )
     },
     title-page: (..args) => {

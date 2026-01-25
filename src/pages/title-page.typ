@@ -37,9 +37,10 @@
   /// -> content
   body,
 ) = {
+  set page(margin: auto, header: none, footer: none)
   set align(center + horizon)
   set pagebreak(weak: true, to: if double-sided { "odd" })
-  
+
   grid(
     columns: 1,
     gutter: (
@@ -50,7 +51,7 @@
       0.17em,
     ),
     align: center + top,
-    
+
     line(length: 100%, stroke: 3pt),
     text(size: 17.28pt)[#title],
     line(length: 100%, stroke: 3pt),
@@ -67,6 +68,6 @@
     body,
   )
   v(70pt)
-  
+
   pagebreak()
 }

@@ -1,3 +1,4 @@
+#import "@preview/marginalia:0.3.1" as marginalia: wideblock
 #import "../utils/convert.typ": to-str
 
 /// Generate title block for technical report
@@ -24,13 +25,16 @@
   ///
   /// -> datetime
   date: datetime.today(),
+  /// Add margins to binding side for printing
+  ///
+  /// -> bool
+  print: true,
   /// Date format string
   ///
   /// -> string
   date-format: "[month repr:long] [day], [year]",
 ) = {
-  v(54pt)
-  grid(
+  let title-box = grid(
     columns: 1,
     gutter: (
       10pt,
@@ -39,7 +43,7 @@
       18pt,
     ),
     align: center + top,
-    
+
     strong(confidential),
     line(length: 100%, stroke: 3pt),
     grid.cell(
@@ -59,5 +63,11 @@
     ],
   )
 
-  v(24.5pt)
+  v(54pt)
+  if print {
+    wideblock(side: "inner", title-box)
+  } else {
+    title-box
+  }
+  v(25pt)
 }

@@ -1,4 +1,5 @@
 #import "@preview/itemize:0.2.0" as el
+#import "@preview/marginalia:0.3.1" as marginalia: wideblock
 #import "../utils/convert.typ": to-str
 
 /// Document metadata & global settings
@@ -36,27 +37,44 @@
   /// -> content
   body,
 ) = {
+  show: marginalia.setup.with(
+    inner: if print { (far: 25mm, width: 77.5pt, sep: 5mm) } else { (far: 5mm, width: 15mm, sep: 5mm) },
+    outer: (far: 5mm, width: 15mm, sep: 5mm),
+    book: double-sided,
+  )
+
+  let header-block = context {
+    // Omit header at first page
+    if counter(page).get().first() == 1 { none } else {
+      grid(
+        columns: (1fr, auto, 1fr),
+        align: (left, center, right),
+        author, confidential, company,
+      )
+      v(0.17em)
+      line(length: 100%)
+    }
+  }
+
+  let footer-block = context {
+    if counter(page).get().first() == 1 { none } else {
+      line(length: 100%)
+      emph(title) + h(1fr) + counter(page).display()
+    }
+  }
+
   set page(
     numbering: "1",
-    // Omit header at first page
-    header: context {
-      // Omit header at first page
-      if counter(page).get().first() == 1 { none } else {
-        grid(
-          columns: (1fr, auto, 1fr),
-          align: (left, center, right),
-          author, confidential, company,
-        )
-        v(0.17em)
-        line(length: 100%)
-      }
+    header: if print {
+      wideblock(side: "inner", header-block)
+    } else {
+      header-block
     },
     // Omit footer at first page
-    footer: context {
-      if counter(page).get().first() == 1 { none } else {
-        line(length: 100%)
-        emph(title) + h(1fr) + counter(page).display()
-      }
+    footer: if print {
+      wideblock(side: "inner", footer-block)
+    } else {
+      footer-block
     },
   )
   counter(page).update(1)
@@ -74,11 +92,14 @@
     // 1.33em: double line spacing in MS Word
     leading: 0.17em,
     spacing: 0.17em,
-    // Enable first-line indent for Chinese
-    first-line-indent: (amount: 2em, all: true),
+    first-line-indent: (amount: 1.5em, all: true),
   )
 
   set heading(numbering: "1.1")
+  // Ignore binding margin for headings
+  show heading: it => if print { wideblock(side: "inner", it) } else { it }
+  // Double-line spacing for headings
+  show heading: set block(above: 1.33em, below: 0.75em)
 
   ////////////////////////////
   // Custom format settings //
