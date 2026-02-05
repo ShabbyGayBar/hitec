@@ -8,7 +8,12 @@ description = "A template designed for documentation in high-technology companie
 repository = "https://github.com/ShabbyGayBar/hitec"
 keywords = ["technology", "report"]
 categories = ["book", "report"]
-exclude = ["documentation"]
+exclude = [
+  "docs",
+  ".gitattribute",
+  ".gitignore",
+  "thumbnail.png",
+]
 
 [template]
 path = "template"
